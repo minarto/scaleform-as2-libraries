@@ -1,8 +1,10 @@
+import com.minarto.data.*;
+
 class com.minarto.data.DBind extends Bind
 {
 	static private function getOffsetTime():Number
 	{
-		var bind:Bind = new Bind, offsetTime:Number, date:Date;
+		var bind:Bind = BindDic.get("main"), offsetTime:Number, date:Date;
 		
 		var onTime = function($year:Number, $month:Number, $date:Number, $hour:Number, $min:Number, $sec:Number, $millisec:Number)
 		{
@@ -22,27 +24,29 @@ class com.minarto.data.DBind extends Bind
 		}
 		
 		return	getOffsetTime();
-	}
-	
-	
+	}	
+
+	/**
+	 * get current date
+	 * @return
+	 */
 	static public function getDate():Date
 	{
 		return	new Date(getOffsetTime() + getTimer());
-	}
-	
+	}	
 	
 	public function toString():String
 	{
-		return	"[blueside.data.DBind interval:" + getInterval() + "sec]"
+		return	"[com.minarto.data.DBind interval:" + getInterval() + "sec]"
 	}
 	
 	
-	private var interval:Number = 100, intervalID:Number;
-	
+	private var interval:Number = 100, intervalID:Number;	
 	
 	/**
-	 * 
-	 */		
+	 * set interval
+	 * @param	$interval
+	 */
 	public function init($interval:Number):Void
 	{
 		interval = ($interval || 0.1) * 1000;
@@ -51,12 +55,8 @@ class com.minarto.data.DBind extends Bind
 		{
 			this.play();
 		}
-	}
+	}	
 	
-	
-	/**
-	 * 
-	 */		
 	private function intervalFunc():Void
 	{
 		var key:String, date:Date = getDate();
@@ -69,40 +69,33 @@ class com.minarto.data.DBind extends Bind
 	
 	
 	/**
-	 * 시작
-	 * 
+	 * play
 	 */		
 	public function play():Void
 	{
 		clearInterval(intervalID);
 		intervalID = setInterval(this, "intervalFunc", interval);
-	}
-	
+	}	
 	
 	/**
-	 * 정지
-	 * 
+	 * stop
 	 */		
 	public function stop():Void
 	{
 		clearInterval(intervalID);
 		intervalID = NaN;
-	}
-	
+	}	
 	
 	/**
-	 * 동작 여부
-	 * 
+	 * is playing
 	 */		
 	public function getIsPlaying():Boolean
 	{
 		return	Boolean(intervalID);
-	}
-	
-	
+	}	
+
 	/**
-	 * 인터벌 값
-	 * 
+	 * get interval
 	 */
 	public function getInterval():Number
 	{
