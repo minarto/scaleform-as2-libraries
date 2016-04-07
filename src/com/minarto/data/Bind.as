@@ -75,7 +75,7 @@ class com.minarto.data.Bind
 	
 	public function del($key:String, $scope, $handler:Function, $uid:Number):Void
 	{
-		var key:String, dic:Array = handlerDic[$key], i:Number, args:Array;
+		var key:String, dic:Array, i:Number, args:Array;
 		
 		for (key in handlerDic)
 		{
