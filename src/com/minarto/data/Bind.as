@@ -11,7 +11,7 @@ class com.minarto.data.Bind
 	}
 	
 	
-	public function set($key, $value):Void
+	public function set($key:String, $value):Void
 	{
 		valueDic[$key] = arguments.slice(1);
 		
@@ -19,21 +19,23 @@ class com.minarto.data.Bind
 	}
 	
 
-	public function evt($key, $value):Void
+	public function evt($key:String, $value):Void
 	{
-		var values:Array = arguments.slice(1), dic:Array = handlerDic[$key], i, args:Array, fn:Function;
+		var dic:Array = handlerDic[$key], i, args:Array, fn:Function;
+		
+		$value = arguments.slice(1);
 		
 		for(i in dic)
 		{
 			args = dic[i];
 			fn = args.handler;
-			fn.apply(args.scope, values.concat(args));
+			fn.apply(args.scope, $value.concat(args));
 		}
 		
 		if (!i)
 		{
 			args = reservations[$key] || (reservations[$key] = [])
-			args.push(values);
+			args.push($value);
 		}		
 	}
 	
