@@ -18,7 +18,7 @@ class com.minarto.data.BindDic
 	}
 	
 		
-	static public function set($uid, $key, $value):Void
+	static public function set($uid, $key:String, $value):Void
 	{
 		var b:Bind = BindDic.get($uid);
 		
@@ -26,7 +26,7 @@ class com.minarto.data.BindDic
 	}
 	
 
-	static public function evt($uid, $key, $value):Void
+	static public function evt($uid, $key:String, $value):Void
 	{
 		var b:Bind = BindDic.get($uid);
 		
