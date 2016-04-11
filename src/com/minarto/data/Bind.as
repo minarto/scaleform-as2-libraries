@@ -34,7 +34,7 @@ class com.minarto.data.Bind
 		
 		if (!i)
 		{
-			args = reservations[$key] || (reservations[$key] = [])
+			args = reservations[$key] || (reservations[$key] = []);
 			args.push($value);
 		}		
 	}
