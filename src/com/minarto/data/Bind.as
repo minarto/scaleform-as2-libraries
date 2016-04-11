@@ -105,9 +105,9 @@ class com.minarto.data.Bind
 		
 	public function getAt($key:String, $index:Number)
 	{
-		var values:Array = valueDic[$key];
+		var values:Array = this.get($key);
 		
-		return	values ? values[$index || 0] : undefined;
+		return	values ? values[$index || 0] : values;
 	}
 		
 		
