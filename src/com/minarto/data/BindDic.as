@@ -5,7 +5,7 @@ class com.minarto.data.BindDic
 
 	static public function link($uid0, $uid1):Void
 	{
-		var b:Bind = dic[$uid0] || get($uid1);
+		var b:Bind = dic[$uid0] || BindDic.get($uid1);
 		
 		dic[$uid0] = b;
 		dic[$uid1] = b;
@@ -20,7 +20,7 @@ class com.minarto.data.BindDic
 		
 	static public function set($uid, $key, $value):Void
 	{
-		var b:Bind = get($uid);
+		var b:Bind = BindDic.get($uid);
 		
 		b.set.apply(b, arguments.slice(1));
 	}
@@ -28,7 +28,7 @@ class com.minarto.data.BindDic
 
 	static public function evt($uid, $key, $value):Void
 	{
-		var b:Bind = get($uid);
+		var b:Bind = BindDic.get($uid);
 		
 		b.evt.apply(b, arguments.slice(1));
 	}
