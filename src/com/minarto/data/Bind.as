@@ -42,23 +42,23 @@ class com.minarto.data.Bind
 	
 	public function add($key:String, $scope, $handler:Function):Number
 	{
-		var dic:Array = handlerDic[$key] || (handlerDic[$key] = [] ), args:Array = arguments.slice(3), uid:Number = ++ uid;
+		var dic:Array = handlerDic[$key] || (handlerDic[$key] = [] ), args:Array = arguments.slice(3), id:Number = ++ uid;
 		
 		args.scope = $scope;
 		args.handler = $handler;
-		args.uid = uid;
+		args.uid = id;
 		
 		dic.push(args);
 		
 		delete	reservations[$key];
 		
-		return	uid;
+		return	id;
 	}
 	
 	
 	public function addPlay($key:String, $scope, $handler:Function):Number
 	{
-		var a:Array = reservations[$key], uid:Number = add.apply(this, arguments), i:Number, l:Number = a ? a.length - 1 : 0, values:Array;
+		var a:Array = reservations[$key], id:Number = add.apply(this, arguments), i:Number, l:Number = a ? a.length - 1 : 0, values:Array;
 		
 		for (i = 0; i < l; ++i)
 		{
@@ -71,7 +71,7 @@ class com.minarto.data.Bind
 			$handler.apply($scope, values.concat(arguments.slice(3)));
 		}
 		
-		return	uid;
+		return	id;
 	}
 		
 	
