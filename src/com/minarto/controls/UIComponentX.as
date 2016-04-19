@@ -1,10 +1,10 @@
 import com.minarto.constransts.InvalidationType;
 import com.minarto.controls.*;
 
-import gfx.core.UIComponent;
+import gfx.controls.ListItemRenderer;
 
 
-class com.minarto.controls.UIComponentX extends UIComponent
+class com.minarto.controls.ListItemRendererX extends ListItemRenderer
 {
 	private var _invalid:Boolean, _invalidHash;
 	
@@ -24,7 +24,7 @@ class com.minarto.controls.UIComponentX extends UIComponent
 	}
 	
 	
-    public function UIComponentX() 
+    public function ListItemRendererX()
     {
         super();
 		
@@ -58,10 +58,7 @@ class com.minarto.controls.UIComponentX extends UIComponent
 	
     private function isInvalid():Boolean
 	{
-		if (!_invalid)
-		{
-			return false;
-		}
+		if (!_invalid)	return false;
 		
 		var i:Number = arguments.length;
 		
