@@ -7,12 +7,6 @@ import gfx.core.UIComponent;
 
 class com.minarto.controls.UIComponentX extends UIComponent
 {
-	public function toString():String
-	{
-		return "[com.minarto.core.UIComponentX: " + _name + "]";
-	}
-	
-
 	private var _invalid:Boolean, _invalidHash = { };
 	
 	
