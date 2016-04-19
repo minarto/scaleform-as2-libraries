@@ -6,12 +6,6 @@ import gfx.controls.Button;
 
 class com.minarto.controls.ButtonX extends Button
 {
-	public function toString():String
-	{
-		return "[com.minarto.controls.ButtonX: " + _name + "]";
-	}
-	
-
 	private var _invalid:Boolean, _invalidHash = { };
 	
 	
