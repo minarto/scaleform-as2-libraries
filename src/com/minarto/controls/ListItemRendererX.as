@@ -6,12 +6,6 @@ import gfx.controls.ListItemRenderer;
 
 class com.minarto.controls.ListItemRendererX extends ListItemRenderer
 {
-	public function toString():String
-	{
-		return "[com.minarto.core.ListItemRendererX: " + _name + "]";
-	}
-	
-
 	private var _invalid:Boolean, _invalidHash = { };
 	
 	
