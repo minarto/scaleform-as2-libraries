@@ -1,19 +1,22 @@
-import com.minarto.controls.*;
 import com.minarto.constransts.InvalidationType;
-import com.minarto.core.UIComponentX;
+import com.minarto.controls.*;
+
 import gfx.controls.Button;
 
 
 class com.minarto.controls.ButtonX extends Button
 {
-	private var _invalid:Boolean, _invalidHash = { };
+	private var _invalid:Boolean, _invalidHash;
 	
 	
 	public function setSize($w:Number, $h:Number):Void
 	{
 		//super.setSize($w, $h);
 		
-		if (__width == $w && __height == $h)	return;
+		if (__width == $w && __height == $h)
+		{
+			return;
+		}
 		__width = $w;
 		__height = $h;
 		sizeIsInvalid = true;
@@ -24,6 +27,8 @@ class com.minarto.controls.ButtonX extends Button
     public function ButtonX() 
     {
         super();
+		
+		_invalidHash = { };
     }
 
 	
@@ -53,17 +58,26 @@ class com.minarto.controls.ButtonX extends Button
 	
     private function isInvalid():Boolean
 	{
-		if (!_invalid)	return false;
+		if (!_invalid)
+		{
+			return false;
+		}
 		
 		var i:Number = arguments.length;
 		
 		if (i)
 		{
-			if (_invalidHash[InvalidationType.ALL])	return true;
+			if (_invalidHash[InvalidationType.ALL])
+			{
+				return true;
+			}
 		
 			while(i --)
 			{
-				if (_invalidHash[arguments[i]])	return true;
+				if (_invalidHash[arguments[i]])
+				{
+					return true;
+				}
 			}
 			
 			return false;
@@ -77,7 +91,10 @@ class com.minarto.controls.ButtonX extends Button
 	
     public function validateNow():Void
 	{
-		if (!_invalid)	return;
+		if (!_invalid)
+		{
+			return;
+		}
 		
 		super.validateNow();
 		
@@ -104,13 +121,11 @@ class com.minarto.controls.ButtonX extends Button
 			_height = __height;
 		}
         
-        if (initialized) {        
+        if (initialized)
+		{        
 		    constraints.update(__width, __height);
         } 
 		
 		super.draw();
-		
-		
-		
 	}
 }
