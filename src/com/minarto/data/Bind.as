@@ -34,7 +34,7 @@ class com.minarto.data.Bind
 		
 		if (!i)
 		{
-			args = reservations[$key] || (reservations[$key] = []);
+			args = reservations[$key] || (reservations[$key] = [])
 			args.push($value);
 		}		
 	}
@@ -42,23 +42,23 @@ class com.minarto.data.Bind
 	
 	public function add($key:String, $scope, $handler:Function):Number
 	{
-		var dic:Array = handlerDic[$key] || (handlerDic[$key] = [] ), args:Array = arguments.slice(3), id:Number = ++ uid;
+		var dic:Array = handlerDic[$key] || (handlerDic[$key] = [] ), args:Array = arguments.slice(3), uid:Number = ++ uid;
 		
 		args.scope = $scope;
 		args.handler = $handler;
-		args.uid = id;
+		args.uid = uid;
 		
 		dic.push(args);
 		
 		delete	reservations[$key];
 		
-		return	id;
+		return	uid;
 	}
 	
 	
 	public function addPlay($key:String, $scope, $handler:Function):Number
 	{
-		var a:Array = reservations[$key], id:Number = add.apply(this, arguments), i:Number, l:Number = a ? a.length - 1 : 0, values:Array;
+		var a:Array = reservations[$key], uid:Number = add.apply(this, arguments), i:Number, l:Number = a ? a.length - 1 : 0, values:Array;
 		
 		for (i = 0; i < l; ++i)
 		{
@@ -71,13 +71,13 @@ class com.minarto.data.Bind
 			$handler.apply($scope, values.concat(arguments.slice(3)));
 		}
 		
-		return	id;
+		return	uid;
 	}
 		
 	
 	public function del($key:String, $scope, $handler:Function, $uid:Number):Void
 	{
-		var key:String, dic:Array = handlerDic[$key], i:Number, args:Array;
+		var key:String, dic:Array, i:Number, args:Array;
 		
 		for (key in handlerDic)
 		{
@@ -105,7 +105,7 @@ class com.minarto.data.Bind
 		
 	public function getAt($key:String, $index:Number)
 	{
-		var values:Array = this.get($key);
+		var values:Array = valueDic[$key];
 		
 		return	values ? values[$index || 0] : values;
 	}
