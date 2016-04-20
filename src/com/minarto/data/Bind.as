@@ -21,21 +21,18 @@ class com.minarto.data.Bind
 
 	public function evt($key:String, $value):Void
 	{
-		var dic:Array = handlerDic[$key], i, args:Array, fn:Function;
-		
-		$value = arguments.slice(1);
+		var values:Array = arguments.slice(1), dic:Array = handlerDic[$key], i, args:Array;
 		
 		for(i in dic)
 		{
 			args = dic[i];
-			fn = args.handler;
-			fn.apply(args.scope, $value.concat(args));
+			args.handler.apply(args.scope, values.concat(args));
 		}
 		
 		if (!i)
 		{
 			args = reservations[$key] || (reservations[$key] = [])
-			args.push($value);
+			args.push(values);
 		}		
 	}
 	
