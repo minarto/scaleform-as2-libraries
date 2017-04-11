@@ -74,26 +74,57 @@ class com.minarto.data.Bind
 	
 	public function del($key:String, $scope, $handler:Function, $uid:Number):Void
 	{
-		var key:String, dic:Array, i:Number, args:Array;
+		var dic:Array, i:Number, args:Array;
 		
-		for (key in handlerDic)
+		if ($uid)
 		{
-			if (($key == key) || (!$key))
+			for ($key in handlerDic)
 			{
-				dic = handlerDic[key];
+				dic = handlerDic[$key];
 				i = dic.length;
 				while(i--)
 				{
 					args = dic[i];
-					if ((($scope == args.scope) || (!$scope)) && (($handler == args.handler) || (!$handler)))
+					
+					if ($scope == args.uid)
 					{
 						dic.splice(i, 1);
+						return;
+					}
+				}
+			}
+		}
+		
+		if ($key)
+		{
+			dic = handlerDic[$key];
+			i = dic.length;
+			while(i--)
+			{
+				args = dic[i];
+				
+				if (($scope && ($scope != args.scope)) || ($handler && ($handler != args.handler)))
+				{
+					continue;
+				}
+				dic.splice(i, 1);
+			}
+		}
+		else
+		{
+			for ($key in handlerDic)
+			{
+				dic = handlerDic[$key];
+				i = dic.length;
+				while(i--)
+				{
+					args = dic[i];
+					
+					if (($scope && ($scope != args.scope)) || ($handler && ($handler != args.handler)))
+					{
 						continue;
 					}
-					if(($uid == args.uid) || (!$uid))
-					{
-						dic.splice(i, 1);
-					}
+					dic.splice(i, 1);
 				}
 			}
 		}
